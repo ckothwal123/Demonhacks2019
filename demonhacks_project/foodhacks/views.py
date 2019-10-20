@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.forms import modelform_factory
+from .models import Resources
 # Create your views here.
 def index(request):
 
@@ -21,5 +23,21 @@ def shelter(request):
     return render(request,'foodhacks/shelter.html')
 
 def restaurant(request):
+    # if this is a POST request we need to process the form data
+    ResourceForm = modelform_factory(Resources, fields=("rec_source" ,"quantity", "date_posted" ,"exp_date", "will_handle_delivery", "weight"))
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = ResourceForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            form.save()
+            return render(request, 'foodhacks/restaurant_copy.html')
 
-    return render(request,'foodhacks/restaurant.html')
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = ResourceForm()        
+
+    return render(request, 'foodhacks/restaurant_copy.html', {'form': form})
