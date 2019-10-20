@@ -5,7 +5,7 @@ class Source(models.Model):
     name = models.CharField(max_length = 30)
     latitude = models.FloatField()
     longitude = models.FloatField()
-    desc = models.TextField()
+    desc = models.TextField(null=True, blank = True)
 
 class Dest(models.Model):
     name = models.CharField(max_length = 30)
