@@ -41,3 +41,4 @@ def restaurant(request):
         form = ResourceForm()        
 
     return render(request, 'foodhacks/restaurant_copy.html', {'form': form})
+
