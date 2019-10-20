@@ -22,3 +22,9 @@ class Resources(models.Model):
     exp_date = models.DateTimeField()
     will_handle_delivery = models.PositiveSmallIntegerField()
     weight = models.PositiveSmallIntegerField()
+
+class Result(models.Model):
+    source_restaurant = models.CharField(max_length = 20)
+    destination_shelter = models.CharField(max_length = 20)
+    quantity_delivered = models.FloatField()
+

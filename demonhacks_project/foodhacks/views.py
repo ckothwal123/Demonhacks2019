@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.forms import modelform_factory
-from .models import Resources, Dest
+from .models import Resources, Dest, Result
 from .utilities import calculate_cost
 # Create your views here.
 def index(request):
@@ -51,7 +51,17 @@ def restaurant(request):
             # print(reqTray)
             # print(shelters)
             
-            calculate_cost(reqTray, shelters)
+            reqTray_result, cost_estimate = calculate_cost(reqTray, shelters)
+            # print(cost_estimate[0]['req']['feeds'])
+            # result = Result()
+            restaurant_name = cost_estimate[0]['req']['name']
+            for i in cost_estimate[0]['shelters']:
+                result = Result()
+                result.source_restaurant = restaurant_name
+                result.destination_shelter = i['name']
+                result.quantity_delivered = i['n_people']
+                result.save()
+                print(i['name'], i['n_people'])
             return render(request, 'foodhacks/restaurant_copy.html')
 
     # if a GET (or any other method) we'll create a blank form

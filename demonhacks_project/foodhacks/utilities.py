@@ -44,6 +44,7 @@ def calculate_cost(reqTray, shelters):
         reqTray.remove(reqT['req'])
     print("Cost Estimate: ", cost_estimate)
     print("reqTray: ", reqTray)
+    return reqTray, cost_estimate
 
 
 def distance(source, des):
