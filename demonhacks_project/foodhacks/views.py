@@ -23,3 +23,5 @@ def shelter(request):
 def restaurant(request):
 
     return render(request,'foodhacks/restaurant.html')
+
+
