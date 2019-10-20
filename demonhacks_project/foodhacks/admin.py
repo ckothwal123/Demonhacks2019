@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Source, Dest, Resources
 
-# Register your models here.
+admin.site.register(Source)
+admin.site.register(Dest)
+admin.site.register(Resources)
