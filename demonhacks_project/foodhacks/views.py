@@ -6,8 +6,22 @@ from .models import Resources, Dest, Result
 from .utilities import calculate_cost
 # Create your views here.
 def index(request):
+    all_entries = Result.objects.all()
+    result_list = []
 
-    return render(request,'foodhacks/dashboard.html')
+    for i in all_entries:
+        print(i.destination_shelter, i.source_restaurant, i.quantity_delivered)
+        # new_dict['source']=i.source_restaurant
+        # new_dict['destination'] = i.destination_shelter
+        # new_dict['quantity'] = i.quantity_delivered
+        new_dict = {
+            "source": i.source_restaurant,
+            "destination": i.destination_shelter,
+            "quantity" : i.quantity_delivered
+        }
+        result_list.append(new_dict)
+        
+    return render(request,'foodhacks/dashboard.html',{'result_list': result_list})
     # return HttpResponse("Hello, world. You're at the polls index.")
 
 def getdata(request):
