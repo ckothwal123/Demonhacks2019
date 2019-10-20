@@ -1,21 +1,21 @@
 import googlemaps
 from datetime import datetime
 
-def calculate_cost():
-    reqTray = [{
-        'name': 'R1',
-        'feeds': 50,
-        'location': (41.8903425, -87.6337034)
-    }, {
-        'name': 'R2',
-        'feeds': 100,
-        'location': (41.921938,-87.6665399)
-        # 'location': (41.8903425, -87.6337034)
-    }, ]
+def calculate_cost(reqTray, shelters):
+    # reqTray = [{
+    #     'name': 'R1',
+    #     'feeds': 50,
+    #     'location': (41.8903425, -87.6337034)
+    # }, {
+    #     'name': 'R2',
+    #     'feeds': 100,
+    #     'location': (41.921938,-87.6665399)
+    #     # 'location': (41.8903425, -87.6337034)
+    # }, ]
 
-    shelters = [{"name": "S1", "n_people": 20, "location": (41.8775762,-87.6294064), 'distance_from_r': 5},
-                {"name": "S2", "n_people": 30, "location": (41.8889812,-87.6361723), 'distance_from_r': 10},
-                {"name": "S3", "n_people": 100, "location": (41.8364014,-87.6183985), 'distance_from_r': 15}]
+    # shelters = [{"name": "S1", "n_people": 20, "location": (41.8775762,-87.6294064), 'distance_from_r': 5},
+    #             {"name": "S2", "n_people": 30, "location": (41.8889812,-87.6361723), 'distance_from_r': 10},
+    #             {"name": "S3", "n_people": 100, "location": (41.8364014,-87.6183985), 'distance_from_r': 15}]
 
     rad = 10.0
     cost_estimate = []

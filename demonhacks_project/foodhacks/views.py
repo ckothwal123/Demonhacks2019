@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.forms import modelform_factory
-from .models import Resources
+from .models import Resources, Dest
+from .utilities import calculate_cost
 # Create your views here.
 def index(request):
 
@@ -34,6 +35,23 @@ def restaurant(request):
             # ...
             # redirect to a new URL:
             form.save()
+            reqTray = [{
+                    'name': form.cleaned_data['rec_source'].name,
+                    'feeds': form.cleaned_data['quantity'],
+                    'location': (form.cleaned_data['rec_source'].latitude, form.cleaned_data['rec_source'].longitude)
+                    },]
+
+            shelters = []
+            
+            shelter_list = Dest.objects.all()
+            for shelter in shelter_list:
+                shelter_dict = {"name": shelter.name, "n_people": shelter.requirement, "location": (shelter.latitude, shelter.longitude)}
+                shelters.append(shelter_dict)
+
+            # print(reqTray)
+            # print(shelters)
+            
+            calculate_cost(reqTray, shelters)
             return render(request, 'foodhacks/restaurant_copy.html')
 
     # if a GET (or any other method) we'll create a blank form
