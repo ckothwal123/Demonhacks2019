@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.forms import modelform_factory
 from .models import Resources, Dest, Result
 from .utilities import calculate_cost
+
 # Create your views here.
 def index(request):
     all_entries = Result.objects.all()

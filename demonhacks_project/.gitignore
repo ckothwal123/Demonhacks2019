@@ -4,3 +4,4 @@ demonhacks_project/__pycache__/
 foodhacks/__pycache__/
 foodhacks/migrations/__pycache__/
 .DS_Store
+demonhacks_project/data.txt

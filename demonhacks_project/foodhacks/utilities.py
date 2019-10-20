@@ -1,5 +1,7 @@
 import googlemaps
 from datetime import datetime
+import os
+
 
 def calculate_cost(reqTray, shelters):
     # reqTray = [{
@@ -48,7 +50,8 @@ def calculate_cost(reqTray, shelters):
 
 
 def distance(source, des):
-    gmaps = googlemaps.Client(key='AIzaSyBWbE4lqt9GscKwyV4I1nS1F6bcLBHSNhE')
+    #Insert google API key here 
+    gmaps = googlemaps.Client(key="Insert API key here")
 
     # geocode_result = gmaps.geocode('1600 Amphitheatre Parkway, Mountain View, CA')
     # geocode_result = gmaps.distance_matrix((41.8363974,-87.6183985),(41.8348731,-87.6270059))
