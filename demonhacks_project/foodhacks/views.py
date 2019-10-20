@@ -4,7 +4,7 @@ from django.shortcuts import render
 # Create your views here.
 def index(request):
 
-    return render(request,'foodhacks/restaurant.html')
+    return render(request,'foodhacks/dashboard.html')
     # return HttpResponse("Hello, world. You're at the polls index.")
 
 def getdata(request):
@@ -19,3 +19,7 @@ def getdata(request):
 def shelter(request):
 
     return render(request,'foodhacks/shelter.html')
+
+def restaurant(request):
+
+    return render(request,'foodhacks/restaurant.html')
