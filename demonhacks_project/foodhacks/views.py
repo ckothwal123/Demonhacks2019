@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.forms import modelform_factory
@@ -10,17 +10,13 @@ def index(request):
     result_list = []
 
     for i in all_entries:
-        print(i.destination_shelter, i.source_restaurant, i.quantity_delivered)
-        # new_dict['source']=i.source_restaurant
-        # new_dict['destination'] = i.destination_shelter
-        # new_dict['quantity'] = i.quantity_delivered
         new_dict = {
             "source": i.source_restaurant,
             "destination": i.destination_shelter,
             "quantity" : i.quantity_delivered
         }
         result_list.append(new_dict)
-        
+
     return render(request,'foodhacks/dashboard.html',{'result_list': result_list})
     # return HttpResponse("Hello, world. You're at the polls index.")
 
@@ -66,6 +62,8 @@ def restaurant(request):
             # print(shelters)
             
             reqTray_result, cost_estimate = calculate_cost(reqTray, shelters)
+            # print("Result of route=",reqTray_result)
+            # print("Cost estimate array",cost_estimate)
             # print(cost_estimate[0]['req']['feeds'])
             # result = Result()
             restaurant_name = cost_estimate[0]['req']['name']
@@ -76,7 +74,8 @@ def restaurant(request):
                 result.quantity_delivered = i['n_people']
                 result.save()
                 print(i['name'], i['n_people'])
-            return render(request, 'foodhacks/restaurant_copy.html')
+            response = redirect('/')
+            return response
 
     # if a GET (or any other method) we'll create a blank form
     else:
